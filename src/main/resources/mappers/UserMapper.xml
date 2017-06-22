@@ -156,12 +156,24 @@
     SELECT COUNT(1) FROM  mmall_user
     WHERE username = #{username}
   </select>
+
+  <select id="checkUserEmail" resultType="int" parameterType="string">
+    SELECT COUNT(1) FROM  mmall_user
+    WHERE email = #{email}
+  </select>
     
     <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
         SELECT
         <include refid="Base_Column_List" />
         FROM mmall_user
         WHERE username=#{username} AND password=#{password}
+    </select>
+
+    <select id="selectQuestionByUsername" resultType="string" parameterType="string">
+        SELECT
+        question
+        FROM mall_user
+        WHERE username = #{username}
     </select>
 
 </mapper>
