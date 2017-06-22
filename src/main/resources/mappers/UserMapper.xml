@@ -175,5 +175,19 @@
         FROM mall_user
         WHERE username = #{username}
     </select>
-
+    
+    <select id="checkAnswer" resultType="int" parameterType="map">
+        SELECT
+        COUNT (1)
+        FROM mmall_user
+        WHERE username = #{username}
+        AND question = #{question}
+        AND answer = #{answer}
+    </select>
+    
+    <update id="updatePasswordByUsername" parameterType="map">
+        UPDATE mmall_user
+        SET password = #{password}, update_time = now()
+        WHERE username = #{username}
+    </update>
 </mapper>
