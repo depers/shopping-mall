@@ -172,13 +172,13 @@
     <select id="selectQuestionByUsername" resultType="string" parameterType="string">
         SELECT
         question
-        FROM mall_user
+        FROM mmall_user
         WHERE username = #{username}
     </select>
     
     <select id="checkAnswer" resultType="int" parameterType="map">
         SELECT
-        COUNT (1)
+        COUNT(1)
         FROM mmall_user
         WHERE username = #{username}
         AND question = #{question}
@@ -190,4 +190,18 @@
         SET password = #{password}, update_time = now()
         WHERE username = #{username}
     </update>
+  
+    <select id="checkPassword" resultType="int" parameterType="map">
+      SELECT
+      COUNT(1)
+      FROM mmall_user
+      WHERE id = #{userId}
+      AND password = #{password}
+    </select>
+
+    <select id="checkEmailByUserId" resultType="int" parameterType="map">
+      SELECT COUNT(1) FROM  mmall_user
+      WHERE email = #{email}
+      AND id != #{userId}
+    </select>
 </mapper>
