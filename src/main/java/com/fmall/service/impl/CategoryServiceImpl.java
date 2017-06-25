@@ -5,17 +5,28 @@ import com.fmall.controller.backend.CategoryManagerController;
 import com.fmall.dao.CategoryMapper;
 import com.fmall.pojo.Category;
 import com.fmall.service.ICategoryService;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.rmi.server.ServerCloneException;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by 冯晓 on 2017/6/24.
  */
 @Service("iCategoryService")
 public class CategoryServiceImpl implements ICategoryService {
+
+    private Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
     @Autowired
     private CategoryMapper categoryMapper;
@@ -57,6 +68,38 @@ public class CategoryServiceImpl implements ICategoryService {
 
 
     public ServerResponse<List<Category>> getChildParallelCategory(Integer categoryId){
+        List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
+        if(CollectionUtils.isEmpty(categoryList)){
+            logger.info("未找到当前分类的子分类");
+        }
+        return ServerResponse.createBySuccess(categoryList);
+    }
 
+
+    public ServerResponse selectCategoryAndChildrenById(Integer categoryId){
+        Set<Category> categorySet = Sets.newHashSet();
+        findChildCategory(categorySet, categoryId);
+
+        List<Integer> categoryIdList = Lists.newArrayList();
+        if(categoryId != null){
+            for (Category categoryItem : categorySet) {
+                categoryIdList.add(categoryItem.getId());
+            }
+        }
+        return ServerResponse.createBySuccess(categoryIdList);
+    }
+
+
+    private Set<Category> findChildCategory(Set<Category> categorySet, Integer categoryId){
+        Category category = categoryMapper.selectByPrimaryKey(categoryId);
+        if(category != null){
+            categorySet.add(category);
+        }
+        //查找子节点，递归算法一定要有一个推退出的条件
+        List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
+        for(Category cg : categoryList){
+            findChildCategory(categorySet, cg.getId());
+        }
+        return categorySet;
     }
 }
