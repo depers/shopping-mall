@@ -243,7 +243,7 @@ public class IProductServiceImpl implements IProductService{
             productListVoList.add(productListVo);
         }
 
-        PageInfo pageInfo = new PageInfo(productListVoList);
+        PageInfo pageInfo = new PageInfo(productList);
         pageInfo.setList(productListVoList);
         return ServerResponse.createBySuccess(pageInfo);
     }
