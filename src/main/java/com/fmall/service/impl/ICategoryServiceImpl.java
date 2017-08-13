@@ -1,7 +1,6 @@
 package com.fmall.service.impl;
 
 import com.fmall.common.ServerResponse;
-import com.fmall.controller.backend.CategoryManagerController;
 import com.fmall.dao.CategoryMapper;
 import com.fmall.pojo.Category;
 import com.fmall.service.ICategoryService;
@@ -14,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.rmi.server.ServerCloneException;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -24,9 +20,9 @@ import java.util.Set;
  * Created by 冯晓 on 2017/6/24.
  */
 @Service("iCategoryService")
-public class CategoryServiceImpl implements ICategoryService {
+public class ICategoryServiceImpl implements ICategoryService {
 
-    private Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(ICategoryServiceImpl.class);
 
     @Autowired
     private CategoryMapper categoryMapper;
