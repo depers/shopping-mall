@@ -1,6 +1,7 @@
 package com.fmall.dao;
 
 import com.fmall.pojo.Cart;
+import com.fmall.pojo.OrderItem;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -29,4 +30,8 @@ public interface CartMapper {
     int checkOrUncheckedProduct(@Param("userId") Integer userId, @Param("productId") Integer productId, @Param("checked") Integer checked);
 
     int selectCartProductCount(Integer userId);
+
+    List<Cart> selectCheckedByUserId(Integer userId);
+
+
 }
