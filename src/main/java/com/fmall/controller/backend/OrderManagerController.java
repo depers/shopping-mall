@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  * Created by 冯晓 on 2017/9/19.
  */
 @Controller
-@RequestMapping("/manager/order/")
+@RequestMapping("/manage/order/")
 public class OrderManagerController {
 
     @Autowired

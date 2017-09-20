@@ -166,7 +166,7 @@
     <include refid="Base_Column_List"/>
     FROM mmall_cart
     WHERE user_id = #{userId}
-    AND CHECK = 1
+    AND checked = 1
   </select>
   
 
