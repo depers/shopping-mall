@@ -2,6 +2,7 @@ package com.fmall.dao;
 
 import com.fmall.pojo.OrderItem;
 import org.apache.ibatis.annotations.Param;
+import redis.clients.jedis.BinaryClient;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface OrderItemMapper {
     List<OrderItem> getByOrderIdAndUserId(@Param("orderNO") Long orderNo, @Param("userId") Integer userId);
 
     void batchInsert(@Param("orderItemList") List<OrderItem> orderItemList);
+
+    List<OrderItem> getByOrderNo(@Param("orderNO") Long orderNo);
 }
