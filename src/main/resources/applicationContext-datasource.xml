@@ -9,8 +9,10 @@
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <!--添加注解扫描-->
     <context:component-scan base-package="com.fmall" annotation-config="true"/>
 
+    <!--将Spring配置中的常量进行分离-->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="order" value="2"/>
@@ -58,7 +60,9 @@
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--将上面id为dataSource的bean注入到SqlSessionFactoryBean-->
         <property name="dataSource" ref="dataSource"/>
+        <!--指定Mybatis SQL实现的文件位置-->
         <property name="mapperLocations" value="classpath*:mappers/*Mapper.xml"></property>
 
         <!-- 分页插件 -->
@@ -67,6 +71,7 @@
                 <bean class="com.github.pagehelper.PageHelper">
                     <property name="properties">
                         <value>
+                            <!--配置方言-->
                             dialect=mysql
                         </value>
                     </property>
@@ -76,6 +81,7 @@
 
     </bean>
 
+    <!--配置Mybatis dao层接口-->
     <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.fmall.dao"/>
     </bean>
@@ -85,6 +91,7 @@
     <!-- 事务管理 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
+        <!--当提交失败时是否进行回滚-->
         <property name="rollbackOnCommitFailure" value="true"/>
     </bean>
 

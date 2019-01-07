@@ -20,7 +20,7 @@
     </filter>
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/*</url-pattern> <!-- 拦截所有请求-->
     </filter-mapping>
 
 
@@ -46,14 +46,13 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>WEB-INF/dispatcher-servlet.xml</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
+        <load-on-startup>1</load-on-startup> <!--当大于0是，在web容器在启动时会初始化这个Servlet-->
     </servlet>
-
 
 
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>*.do</url-pattern> <!--会拦截所有的.do结尾的请求-->
     </servlet-mapping>
 
 </web-app>

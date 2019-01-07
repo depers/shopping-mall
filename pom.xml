@@ -282,6 +282,15 @@
             </plugin>
         </plugins>
 
+        <resources>
+            <resource>
+                <directory>src/main/resources.${deploy.type}</directory>
+                <excludes>
+                    <exclude>*.jsp</exclude>
+                </excludes>
+            </resource>
+            <resource></resource>
+        </resources>
     </build>
 
 

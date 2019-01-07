@@ -1,7 +1,6 @@
 package com.fmall.dao;
 
 import com.fmall.pojo.Cart;
-import com.fmall.pojo.OrderItem;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
