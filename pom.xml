@@ -282,6 +282,7 @@
             </plugin>
         </plugins>
 
+        <!--Maven环境隔离配置-->
         <resources>
             <resource>
                 <directory>src/main/resources.${deploy.type}</directory>
@@ -289,10 +290,38 @@
                     <exclude>*.jsp</exclude>
                 </excludes>
             </resource>
-            <resource></resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
         </resources>
     </build>
 
+    <!--Maven环境隔离参数配置-->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <deploy.type>dev</deploy.type>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>beta</id>
+            <properties>
+                <deploy.type>beta</deploy.type>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <deploy.type>prod</deploy.type>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
 
