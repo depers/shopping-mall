@@ -1,7 +1,5 @@
 package com.fmall.util;
 
-import com.fmall.pojo.User;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -12,7 +10,6 @@ import org.codehaus.jackson.type.JavaType;
 import org.codehaus.jackson.type.TypeReference;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 /**
  * Created by 冯晓 on 2019/1/13.
@@ -30,7 +27,7 @@ public class JsonUtil {
         objectMapper.setSerializationInclusion(Inclusion.ALWAYS);
 
         // 取消默认转换timestamps形式
-        objectMapper.configure(SerializationConfig.Feature.WRITE_DATE_KEYS_AS_TIMESTAMPS, false);
+        objectMapper.configure(SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS, false);
 
         // 忽略空Bean转json的错误
         objectMapper.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
@@ -122,6 +119,11 @@ public class JsonUtil {
     }
 
     public static void main(String[] args) {
+
+        /**
+         * 【Jackson封装JsonUtil及调试】的测试代码
+         */
+        /*
         User u1 = new User();
         u1.setId(1);
         u1.setEmail("dev_fengxiao@163.com");
@@ -151,5 +153,37 @@ public class JsonUtil {
         List<User> userList2 = JsonUtil.string2Obj(userListStr, List.class, User.class);
 
         System.out.println("program is end");
+        */
+
+
+        /**
+         * 【Jackson ObjectMapper源码封装】的测试代码
+         */
+        /*
+        User user = new User();
+        user.setId(1);
+        user.setCreateTime(new Date());
+        user.setEmail("dev_fengxiao@163.com");
+        String userPretty = JsonUtil.obj2StringPretty(user);
+        log.info("user1Json:{}", userPretty);
+        */
+
+        /*
+        TestPojo testPojo = new TestPojo();
+        String testPojoJson = JsonUtil.obj2StringPretty(testPojo);
+        log.info("testPojoJson:{}", testPojoJson);
+        */
+
+        /*
+        TestPojo testPojo2 = new TestPojo();
+        testPojo2.setId(666);
+        testPojo2.setName("fulin");
+        // {"name" : "fulin","id" : 666}
+
+        String json = "{\"name\" : \"fulin\",\"color\" : \"red\",\"id\" : 666}";
+        TestPojo testPojoObj = JsonUtil.string2Obj(json, TestPojo.class);
+        log.info("end");
+        */
+
     }
 }
