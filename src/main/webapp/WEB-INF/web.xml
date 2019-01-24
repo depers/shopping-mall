@@ -22,6 +22,16 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern> <!-- 拦截所有请求-->
     </filter-mapping>
+    
+    <!-- 二期新增session时间的filter-->
+    <filter>
+        <filter-name>sessionExpireTime</filter-name>
+        <filter-class>com.fmall.controller.common.SessionExpireFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sessionExpireTime</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
 
 
     <listener>
