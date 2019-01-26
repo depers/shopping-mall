@@ -9,8 +9,10 @@
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!--添加注解扫描的包-->
-    <context:component-scan base-package="com.fmall" annotation-config="true"/>
+    <!--spring容器中包扫描，排除controller注解，将controller注解由Springmvc配置-->
+    <context:component-scan base-package="com.fmall" annotation-config="true">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
     <!--AOP的配置-->
     <aop:aspectj-autoproxy/>

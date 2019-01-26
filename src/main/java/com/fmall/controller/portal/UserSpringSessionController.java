@@ -40,6 +40,10 @@ public class UserSpringSessionController {
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession httpSession, HttpServletResponse httpServletResponse){
+        // 测试全局异常
+        int i = 0;
+        int j = 666/i;
+
         ServerResponse<User> response = iUserService.login(username, password);
         if(response.isSuccess()){
 
