@@ -24,15 +24,24 @@
     </filter-mapping>
     
     <!-- 二期新增session时间的filter-->
+    <!--<filter>-->
+        <!--<filter-name>sessionExpireTime</filter-name>-->
+        <!--<filter-class>com.fmall.controller.common.SessionExpireFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>sessionExpireTime</filter-name>-->
+        <!--<url-pattern>*.do</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <!-- Spring Session的filter配置-->
     <filter>
-        <filter-name>sessionExpireTime</filter-name>
-        <filter-class>com.fmall.controller.common.SessionExpireFilter</filter-class>
+        <filter-name>springSessionRepositoryFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>sessionExpireTime</filter-name>
+        <filter-name>springSessionRepositoryFilter</filter-name>
         <url-pattern>*.do</url-pattern>
     </filter-mapping>
-
 
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>

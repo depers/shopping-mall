@@ -17,6 +17,7 @@
 
     <!--将Spring配置文件进行分离-->
     <import resource="applicationContext-datasource.xml"/>
+    <import resource="applicationContext-spring-session.xml"/>
 
 
 </beans>
