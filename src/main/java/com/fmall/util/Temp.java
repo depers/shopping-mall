@@ -5,11 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.Jedis;
 
 /**
- * Created by 冯晓 on 2019/1/13.
+ * Created by 冯晓 on 2019/1/26.
  */
-
 @Slf4j
-public class RedisPoolUtil {
+public class Temp {
+
     /**
      * 设置key的有效期
      * @param key
@@ -117,5 +117,4 @@ public class RedisPoolUtil {
 
         System.out.println("program is end");
     }
-
 }
