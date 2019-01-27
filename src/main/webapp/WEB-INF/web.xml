@@ -69,9 +69,14 @@
     </servlet>
 
 
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>dispatcher</servlet-name>-->
+        <!--<url-pattern>*.do</url-pattern> &lt;!&ndash;会拦截所有的.do结尾的请求&ndash;&gt;-->
+    <!--</servlet-mapping>-->
+
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.do</url-pattern> <!--会拦截所有的.do结尾的请求-->
+        <url-pattern>/</url-pattern> <!--配置RESTful-->
     </servlet-mapping>
 
 </web-app>

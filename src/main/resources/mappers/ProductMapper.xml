@@ -208,7 +208,7 @@
     </if>
     <if test="categoryIdList != null">
       AND category_id IN 
-      <foreach item="item" index="index" open="{" separator="," close="}" collection="categoryIdList">
+      <foreach item="item" index="index" open="(" separator="," close=")" collection="categoryIdList">
         #{item}
       </foreach>
     </if>
