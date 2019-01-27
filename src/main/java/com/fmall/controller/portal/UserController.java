@@ -37,7 +37,7 @@ public class UserController {
      * @param httpSession
      * @return
      */
-    @RequestMapping(value = "login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "login.do", method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession httpSession, HttpServletResponse httpServletResponse){
         ServerResponse<User> response = iUserService.login(username, password);
