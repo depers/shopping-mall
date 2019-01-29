@@ -29,6 +29,7 @@ public class CloseOrderTask {
     }
 
 
+    @Scheduled(cron = "0 */1 * * * ?")
     public void closeOrderTaskV2(){
         log.info("关闭订单定时任务启动");
         long lockTimeout = Long.parseLong(PropertiesUtil.getProperty("lock.timeOut", "5000"));
@@ -51,7 +52,7 @@ public class CloseOrderTask {
         log.info("获取{},ThreadName:{}", lockName, Thread.currentThread().getName());
         long lockTimeout = Long.parseLong(PropertiesUtil.getProperty("lock.timeOut", "5000"));
         int hour = Integer.parseInt(PropertiesUtil.getProperty("close.order.task.time.hour"));
-        iOrderService.closeOrder(hour);
+        //iOrderService.closeOrder(hour);
         RedisShardedPoolUtil.del(lockName); //释放锁
         log.info("释放{},ThreadName:{}",lockName, Thread.currentThread().getName());
         log.info("===========================================");
