@@ -1,16 +1,19 @@
 package com.fmall.task;
 
 import com.fmall.common.Const;
+import com.fmall.common.RedissonManager;
 import com.fmall.service.IOrderService;
 import com.fmall.util.PropertiesUtil;
 import com.fmall.util.RedisShardedPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.redisson.api.RLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by 冯晓 on 2019/1/28.
@@ -22,6 +25,9 @@ public class CloseOrderTask {
 
     @Autowired
     private IOrderService iOrderService;
+
+    @Autowired
+    private RedissonManager redissonManager;
 
     // 没有使用kill进程的方式关闭tomcat，而是使用tomcat的shutdown命令关闭tomcat的时候。tomcat容器在关闭之前会调用这个方法
     // 解决的问题：
@@ -60,7 +66,7 @@ public class CloseOrderTask {
     }
 
 
-    @Scheduled(cron = "0 */1 * * * ?")
+    //@Scheduled(cron = "0 */1 * * * ?")
     public void closeOrderTaskV3(){
         log.info("关闭订单定时任务启动");
 
@@ -90,6 +96,29 @@ public class CloseOrderTask {
             }
         }
         log.info("关闭订单定时任务结束");
+    }
+
+    @Scheduled(cron = "0 */1 * * * ?")
+    public void closeOrderTaskV4(){
+        RLock lock = redissonManager.getRedisson().getLock(Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);
+        boolean getLock = false;
+        try {
+            if(getLock = lock.tryLock(2, 5, TimeUnit.SECONDS)){
+                log.info("Redisson获取分布式锁:{}，ThreadName:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK, Thread.currentThread().getName());
+                int hour = Integer.parseInt(PropertiesUtil.getProperty("close.order.task.time.hour"));
+                //iOrderService.closeOrder(hour);
+            }else{
+                log.info("Redisson没有获取到分布式锁:{}，ThreadName:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK, Thread.currentThread().getName());
+            }
+        } catch (InterruptedException e) {
+            log.error("Redisson分布式锁获取异常", e);
+        }finally {
+            if (!getLock){
+                return;
+            }
+            lock.unlock();
+            log.info("Redisson分布式锁释放锁");
+        }
     }
 
     private void closeOrder(String lockName){
