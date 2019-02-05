@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="LOG_HOME" value="${CATALINA_HOME}/logs"></property>
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoding>UTF-8</encoding>
         <encoder>
@@ -11,11 +12,11 @@
     </appender>
 
     <appender name="fmall" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>d:/mmalllog/mmall.log</File>
-        <!--<File>/developer/apache-tomcat-7.0.73/logs/fmall.log</File>-->
+        <!--<File>d:/mmalllog/mmall.log</File>-->
+        <File>${LOG_HOME}/mmall.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--<fileNamePattern>/developer/apache-tomcat-7.0.73/logs/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
-            <fileNamePattern>d:/mmalllog/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
             <append>true</append>
             <maxHistory>10</maxHistory>
         </rollingPolicy>
@@ -26,11 +27,11 @@
 
 
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>d:/mmalllog/error.log</File>
-        <!--<File>/developer/apache-tomcat-7.0.73/logs/error.log</File>-->
+        <!--<File>d:/mmalllog/error.log</File>-->
+        <File>${LOG_HOME}/error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--<fileNamePattern>/devsoft/apache-tomcat-7.0.73/logs/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
-            <fileNamePattern>d:/mmalllog/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/logs/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <!--<fileNamePattern>d:/mmalll/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
             <append>true</append>
             <maxHistory>10</maxHistory>
         </rollingPolicy>
@@ -47,6 +48,7 @@
     <logger name="com.fmall" additivity="false" level="INFO" >
         <appender-ref ref="fmall" />
         <appender-ref ref="console"/>
+        <appender-ref ref="error"/>
     </logger>
 
 
@@ -56,18 +58,18 @@
     <logger name="com.fmall.dao" level="DEBUG"/>
 
     <!--<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >-->
-        <!--<appender-ref ref="console"/>-->
+    <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
     <!--<logger name="java.sql.Connection" level="DEBUG">-->
-        <!--<appender-ref ref="console"/>-->
+    <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
     <!--<logger name="java.sql.Statement" level="DEBUG">-->
-        <!--<appender-ref ref="console"/>-->
+    <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
     <!--<logger name="java.sql.PreparedStatement" level="DEBUG">-->
-        <!--<appender-ref ref="console"/>-->
+    <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
 
