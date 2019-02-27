@@ -1,10 +1,10 @@
 # shopping-mall
-基于SSM框架开发的电商系统，是一个纯后端的项目。他是继shopping-mall v1.0之后的第二个版本——基于Tomcat集群与Redis分布式的电商系统，对v1.0版本进行了架构演进。
+基于SSM框架开发的电商系统，是一个纯后端的项目。他是继[shopping-mall v1.0](https://github.com/depers/shopping-mall/tree/v1.0)之后的第二个版本——基于Tomcat集群与Redis分布式的电商系统，对v1.0版本进行了架构演进。
 
 ## 项目简介
 shopping-mall是一个纯后端电商系统，基于SSM+Tomcat集群+Redis分布式实现。系统主要包括用户管理模块、分类管理模块、商品模块、购物车模块、收货地址模块、支付模块和订单模块等。为实现前后端分离，该系统只提供前端使用的json数据。
 ## 接口测试文档
-项目演示地址：[http://mall.bravedawn.cn/](http://mall.bravedawn.cn/)
+项目演示地址：[http://mall.bravedawn.cn/](http://mall.bravedawn.cn/)    
 详情请参见本项目[Wiki](https://github.com/depers/shopping-mall/wiki)
 ## 架构图
 ![架构图](/document/resource/one.png)
@@ -54,5 +54,5 @@ Mysql | 5.6 | https://www.mysql.com/
 Redis | 3.2 | https://redis.io/download
 Nginx | 1.10 | http://nginx.org/en/download.html
 
-##感谢
+## 感谢
 [Java企业级电商项目架构演进之路Tomcat集群与Redis分布式](https://coding.imooc.com/class/162.html?mc_marking=4655172e1a62839eea65105dbf244230&mc_channel=sjkctjpc)
