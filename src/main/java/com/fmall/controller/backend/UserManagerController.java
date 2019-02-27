@@ -1,6 +1,7 @@
 package com.fmall.controller.backend;
 
 import com.fmall.common.Const;
+import com.fmall.common.ResponseCode;
 import com.fmall.common.ServerResponse;
 import com.fmall.pojo.User;
 import com.fmall.service.IUserService;
@@ -40,7 +41,7 @@ public class UserManagerController {
                 RedisShardedPoolUtil.setEx(session.getId(), JsonUtil.obj2String(response.getData()), Const.RedisCacheExtime.REDIS_SESSION_EXTIME);
                 return response;
             } else{
-                return ServerResponse.createByErrorMessage("不是管理员，无法登陆");
+                return ServerResponse.createByErrorCodeMessage(ResponseCode.NO_PERMISSION.getCode(), "不是管理员，无法登陆");
             }
         }
         return response;

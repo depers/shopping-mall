@@ -1,6 +1,7 @@
 package com.fmall.controller.common.interceptor;
 
 import com.fmall.common.Const;
+import com.fmall.common.ResponseCode;
 import com.fmall.common.ServerResponse;
 import com.fmall.pojo.User;
 import com.fmall.util.CookieUtil;
@@ -58,7 +59,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
 
         if (StringUtils.equals(className, "UserManagerController") && StringUtils.equals(methodName, "login")){
             log.info("权限拦截器拦截到请求，className:{}, methodName:{}", className, methodName);
-            // 吐过是拦截到登录请求，不打印参数，因为里面有密码，全部都会打印到日志中，防止日志泄露
+            // 如果是拦截到登录请求，不打印参数，因为里面有密码，全部都会打印到日志中，防止日志泄露
             return true;
         }
 
@@ -89,7 +90,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
                     resultMap.put("msg", "请登录管理员");
                     out.print(JsonUtil.obj2String(resultMap));
                 }else{
-                    out.print(JsonUtil.obj2String(ServerResponse.createByErrorMessage("拦截器拦截，用户未登录。")));
+                    out.print(JsonUtil.obj2String(ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "拦截器拦截，用户未登录。")));
                 }
             }else{
                 if (StringUtils.equals(className, "ProductManageController") && StringUtils.equals(methodName, "richTextImgUpload")){
@@ -98,7 +99,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
                     resultMap.put("msg", "用户无权限操作");
                     out.print(JsonUtil.obj2String(resultMap));
                 }else{
-                    out.print(JsonUtil.obj2String(ServerResponse.createByErrorMessage("拦截器拦截，用户无权限操作。")));
+                    out.print(JsonUtil.obj2String(ServerResponse.createByErrorCodeMessage(ResponseCode.NO_PERMISSION.getCode(), "拦截器拦截，用户无权限操作。")));
                 }
             }
             out.flush();
