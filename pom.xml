@@ -281,7 +281,7 @@
 
 
     <build>
-        <finalName>fmall</finalName>
+        <finalName>fmall2</finalName>
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
