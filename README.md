@@ -1,4 +1,4 @@
-# shopping-mall
+# shopping-mall V2.0
 基于SSM框架开发的电商系统，是一个纯后端的项目。他是继[shopping-mall v1.0](https://github.com/depers/shopping-mall/tree/v1.0)之后的第二个版本——基于Tomcat集群与Redis分布式的电商系统，对v1.0版本进行了架构演进。
 
 ## 项目简介
