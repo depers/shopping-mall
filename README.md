@@ -39,6 +39,7 @@ ProcessOn | 流程图绘制工具 | https://www.processon.com/
 ----|----|----
 JDK | 1.8 | https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 Mysql | 5.6 | https://www.mysql.com/
+Tomcat|8.5| http://tomcat.apache.org/
 Nginx | 1.10 | http://nginx.org/en/download.html
 
 ## 感谢
