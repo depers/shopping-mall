@@ -1,5 +1,6 @@
 package com.fmall.service.impl;
 
+import com.fmall.common.ResponseCode;
 import com.fmall.common.ServerResponse;
 import com.fmall.dao.ShippingMapper;
 import com.fmall.pojo.Shipping;
@@ -25,7 +26,13 @@ public class IShippingServiceImpl implements IShippingService {
 
     public ServerResponse add(Integer userId, Shipping shipping){
         shipping.setUserId(userId);
-        int rowCount = shippingMapper.insert(shipping);
+        int rowCount = 0;
+        try{
+            rowCount = shippingMapper.insert(shipping);
+        }catch (Exception e){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+        }
+
         if(rowCount > 0){
             Map result = Maps.newHashMap();
             result.put("shipping", shipping.getId());
@@ -56,7 +63,12 @@ public class IShippingServiceImpl implements IShippingService {
      */
     public ServerResponse update(Integer userId, Shipping shipping){
         shipping.setUserId(userId);
-        int rowCount = shippingMapper.updateByShipping(shipping);
+        int rowCount = 0;
+        try{
+            rowCount = shippingMapper.updateByShipping(shipping);
+        }catch (Exception e){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+        }
         if(rowCount > 0){
             return ServerResponse.createBySuccess("更新地址成功");
         }

@@ -206,7 +206,7 @@ public class OrderController {
         if (serverResponse.isSuccess()){
             return ServerResponse.createBySuccess(true);
         } else{
-            return ServerResponse.createBySuccess(false);
+            return ServerResponse.createError();
         }
     }
 
