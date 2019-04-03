@@ -27,6 +27,7 @@
 <body>
 <div class="center-div">
     <h1>服务器：Tomcat1</h1>
+    <p>请先点击右侧链接，登录管理员以便测试接口－－＞<a href="http://mall.bravedawn.cn/manage/user/login.do?username=admin&password=admin1212">登录管理员</a></p>
     <h2>普通图片上传</h2>
     <form name="form1" action="/manage/product/upload.do" method="post" enctype="multipart/form-data">
         <input type="file" name="upload_file" />

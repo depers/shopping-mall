@@ -27,7 +27,7 @@ shopping-mall是一个纯后端电商系统，基于SSM+Tomcat集群+Redis分布
 |Redisson|提供分布式锁|[https://redisson.org/](https://redisson.org/)|
 |Guava|提供本地缓存实现，支持多种缓存过期策略|[https://github.com/google/guava](https://github.com/google/guava)|
 |Jackson|Java对象与json对象互转|[https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)|
-|Logback|简化对象封装工具|[https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)|
+|Lombok|简化对象封装工具|[https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)|
 |Hashids|id加密解密|[https://hashids.org/](https://hashids.org/)|
 |vsftp|ftp服务器软件|https://security.appspot.com/vsftpd.html|
 ## 环境搭建
