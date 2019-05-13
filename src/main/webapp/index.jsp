@@ -13,7 +13,7 @@
             margin: 0 auto;
             margin-top: 10%;
             border-style: solid;
-            border-width: 1px;
+            border-width: 0px;
             border-radius: 5px;
             padding: 1% 3% 3% 3%;
             background-color: #ececec;
